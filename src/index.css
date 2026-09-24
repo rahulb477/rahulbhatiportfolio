@@ -128,7 +128,12 @@ body {
   width: min(150vmax, 96rem);
   aspect-ratio: 1;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.065) 0, rgba(70, 70, 70, 0.035) 22%, transparent 62%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.065) 0,
+    rgba(70, 70, 70, 0.035) 22%,
+    transparent 62%
+  );
   transform: translate(-50%, -50%);
   animation: loader-radial-breathe 3.05s ease-in-out both;
 }
@@ -219,11 +224,6 @@ body {
   transform-origin: left center;
 }
 
-.loader-word-portfolio {
-  font-size: clamp(2rem, 8.5vw, 7.5rem);
-  letter-spacing: -0.075em;
-}
-
 .loader-space {
   width: 0.3em;
   flex: 0 0 auto;
@@ -301,15 +301,21 @@ body {
 @keyframes loader-name-assemble {
   0% {
     opacity: 0;
-    transform: translate3d(0, var(--loader-rise), 0) rotate(var(--loader-tilt)) scale(0.94);
+    transform: translate3d(0, var(--loader-rise), 0)
+      rotate(var(--loader-tilt))
+      scale(0.94);
   }
   70% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) rotate(0) scale(1.015);
+    transform: translate3d(0, 0, 0)
+      rotate(0)
+      scale(1.015);
   }
   100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    transform: translate3d(0, 0, 0)
+      rotate(0)
+      scale(1);
   }
 }
 
@@ -401,6 +407,11 @@ body {
   transform: translateY(0);
 }
 
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Ambient overlays */
 .ambient-vignette {
   position: fixed;
@@ -433,21 +444,44 @@ body {
   animation: blink 1s steps(2) infinite;
 }
 
-/* The complete transparent hero composition remains uncropped and unfiltered. */
+/* =========================================================
+   HERO PROFILE IMAGE
+   ========================================================= */
+
+/* Desktop */
 .hero-profile-image {
   width: auto;
-  height: min(48svh, 35rem);
+  height: min(52svh, 38rem);
+  max-height: 100%;
 }
 
+/*
+   Mobile:
+   The image is intentionally much larger so it visually fills
+   the available area between the CTA buttons and the Scroll
+   indicator instead of appearing too small.
+*/
 @media (max-width: 639px) {
   .hero-profile-image {
-    height: min(39svh, 25rem);
+    width: auto;
+    height: min(55svh, 35rem);
+    max-height: 100%;
+  }
+
+  .hero-profile-wrap {
+    margin-top: 1rem;
   }
 }
 
+/*
+   Short-height phones:
+   Keep the image large enough to remain prominent while
+   preventing the hero from becoming excessively crowded.
+*/
 @media (max-height: 760px) {
   .hero-profile-image {
-    height: min(34svh, 20rem);
+    height: min(48svh, 27rem);
+    max-height: 100%;
   }
 
   .hero-profile-wrap {
@@ -592,13 +626,16 @@ body {
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: #050505;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #2a2a2a;
   border-radius: 8px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #3a3a3a;
 }
@@ -659,4 +696,4 @@ body {
     transform: none;
     filter: none;
   }
-}
+  }
